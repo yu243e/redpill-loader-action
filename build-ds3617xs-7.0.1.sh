@@ -30,7 +30,6 @@ cd ..
 cd redpill-load
 ext-manager.sh info
 cp -f ${root}/user_config.DS3617xs.json ./user_config.json
-./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/main/rpext-index.json
 sudo ./build-loader.sh 'DS3617xs' '7.0.1-42218'
 mv images/redpill-DS3617xs_7.0.1-4221*.img ${root}/output/
 cd ${root}
