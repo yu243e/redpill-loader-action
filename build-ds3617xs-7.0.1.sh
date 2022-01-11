@@ -16,7 +16,7 @@ git clone -b develop --depth=1 https://github.com/jimmyGALLAND/redpill-load.git
 # download syno toolkit
 curl --location "https://sourceforge.net/projects/dsgpl/files/toolkit/DSM7.0/ds.broadwell-7.0.env.txz/download" --output ds.broadwell-7.0.dev.txz
 
-mkdir bromolow
+mkdir broadwell
 tar -C./broadwell/ -xf ds.broadwell-7.0.dev.txz usr/local/x86_64-pc-linux-gnu/x86_64-pc-linux-gnu/sys-root/usr/lib/modules/DSM-7.0/build
 
 # build redpill-lkm
