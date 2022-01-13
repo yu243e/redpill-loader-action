@@ -5,9 +5,9 @@
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 
 root=`pwd`
-mkdir DS3617xs-7.0.1
+mkdir RS3617xsp-7.0.1
 mkdir output
-cd DS3617xs-7.0.1
+cd RS3617xsp-7.0.1
 
 # download redpill
 git clone -b develop --depth=1 https://github.com/dogofefi/redpill-lkm.git
