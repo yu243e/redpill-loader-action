@@ -28,7 +28,6 @@ cd ..
 
 # build redpill-load
 cd redpill-load
-ext-manager.sh info
 cp -f ${root}/user_config.DS3617xs.json ./user_config.json
 sudo ./build-loader.sh 'RS3617xs+' '7.0.1-42218'
 mv images/redpill-RS3617xs+_7.0.1-4221*.img ${root}/output/
