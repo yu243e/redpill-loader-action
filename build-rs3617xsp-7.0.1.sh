@@ -10,7 +10,7 @@ mkdir output
 cd RS3617xsp-7.0.1
 
 # download redpill
-git clone -b develop --depth=1 https://github.com/dogofefi/redpill-lkm.git
+git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
 
 # download syno toolkit
