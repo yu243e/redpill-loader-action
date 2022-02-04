@@ -5,9 +5,9 @@
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 
 root=`pwd`
-mkdir RS3617xsp-7.0.1
+mkdir DS3622xsp-7.0.1
 mkdir output
-cd RS3617xsp-7.0.1
+cd DS3622xsp-7.0.1
 
 # download redpill
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
@@ -28,7 +28,7 @@ cd ..
 
 # build redpill-load
 cd redpill-load
-cp -f ${root}/user_config.DS3617xs.json ./user_config.json
-sudo ./build-loader.sh 'RS3617xs+' '7.0.1-42218'
-mv images/redpill-RS3617xs+_7.0.1-4221*.img ${root}/output/
+cp -f ${root}/user_config.DS3622xs.json ./user_config.json
+sudo ./build-loader.sh 'DS3622xs+' '7.0.1-42218'
+mv images/redpill-DS3622xs+_7.0.1-4221*.img ${root}/output/
 cd ${root}
