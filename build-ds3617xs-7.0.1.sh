@@ -11,7 +11,7 @@ cd DS3617xs-7.0.1
 
 # download redpill
 git clone -b develop --depth=1 https://github.com/jimmyGALLAND/redpill-lkm.git
-git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
+git clone -b develop --depth=1 https://github.com/jimmyGALLAND/redpill-load.git
 
 # download syno toolkit
 curl --location "https://sourceforge.net/projects/dsgpl/files/toolkit/DSM7.0/ds.broadwell-7.0.dev.txz/download" --output ds.broadwell-7.0.dev.txz
