@@ -14,7 +14,7 @@ git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
 
 # download syno toolkit
-curl --location "https://global.download.synology.com/download/ToolChain/toolkit/7.0/broadwellnk/ds.broadwellnk-7.0.env.txz" --output ds.broadwellnk-7.0.dev.txz
+curl --location "https://global.download.synology.com/download/ToolChain/toolkit/7.0/broadwellnk/ds.broadwellnk-7.0.dev.txz" --output ds.broadwellnk-7.0.dev.txz
 
 mkdir broadwellnk
 tar -C./broadwellnk/ -xf ds.broadwellnk-7.0.dev.txz usr/local/x86_64-pc-linux-gnu/x86_64-pc-linux-gnu/sys-root/usr/lib/modules/DSM-7.0/build
