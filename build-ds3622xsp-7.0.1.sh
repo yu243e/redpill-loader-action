@@ -10,8 +10,8 @@ mkdir output
 cd DS3622xsp-7.0.1
 
 # download redpill
-git clone -b develop --depth=1 https://github.com/jumkey/redpill-lkm.git
-git clone -b develop --depth=1 https://github.com/jumkey/redpill-load.git
+git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
+git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
 
 # download syno toolkit
 curl --location "https://global.download.synology.com/download/ToolChain/toolkit/7.0/broadwellntb/ds.broadwellntb-7.0.dev.txz" --output ds.broadwellnk-7.0.dev.txz
@@ -29,7 +29,7 @@ cd ..
 # build redpill-load
 cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
-./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/main/mpt3sas/rpext-index.json
+#./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/main/mpt3sas/rpext-index.json
 sudo ./build-loader.sh 'DS3622xs+' '7.0.1-42218'
 mv images/redpill-DS3622xs+_7.0.1-4221*.img ${root}/output/
 cd ${root}
