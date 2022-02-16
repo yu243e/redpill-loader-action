@@ -10,7 +10,7 @@ mkdir output
 cd DS3622xsp-7.0.1
 
 # download redpill
-git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
+git clone -b develop --depth=1 https://github.com/jumkey/redpill-lkm.git
 git clone -b develop --depth=1 https://github.com/jumkey/redpill-load.git
 
 # download syno toolkit
