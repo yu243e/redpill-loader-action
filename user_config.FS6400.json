@@ -10,6 +10,7 @@
   },
   "synoinfo": {
     "supportsystemperature": "no",
+     "supportsas": "no",
     "supportsystempwarning": "no"
   },
   "ramdisk_copy": {}
