@@ -10,8 +10,8 @@ mkdir output
 cd FS6400-7.0.1
 
 # download redpill
-git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
-git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
+git clone -b test --depth=1 https://github.com/dogodefi/redpill-lkm.git
+git clone -b test --depth=1 https://github.com/dogodefi/redpill-load.git
 
 # download syno toolkit
 curl --location "https://cndl.synology.cn/download/ToolChain/toolkit/7.0/purley/ds.purley-7.0.dev.txz" --output ds.purley-7.0.dev.txz
