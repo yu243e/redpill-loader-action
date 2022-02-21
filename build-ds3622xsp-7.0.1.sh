@@ -10,7 +10,7 @@ mkdir output
 cd DS3622xsp-7.0.1
 
 # download redpill
-git clone -b test --depth=1 https://github.com/dogodefi/redpill-lkm.git
+git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
 
 # download syno toolkit
@@ -29,7 +29,7 @@ cd ..
 # build redpill-load
 cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
-# ./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/offical/rpext-index.json
+./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/offical/rpext-index.json
 sudo ./build-loader.sh 'DS3622xs+' '7.0.1-42218'
 mv images/redpill-DS3622xs+_7.0.1-4221*.img ${root}/output/
 cd ${root}
