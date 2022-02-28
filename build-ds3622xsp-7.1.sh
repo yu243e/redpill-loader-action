@@ -28,7 +28,7 @@ curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550
 mkdir output-pat
 LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
 cd output-pat && tar -zcvf 42250.pat *
-ls -lh
+cd ../../../
 
 # download redpill
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
@@ -46,10 +46,6 @@ sed -i 's/   -std=gnu89/   -std=gnu89 -fno-pie/' ../broadwellnk/usr/local/x86_64
 make LINUX_SRC=../broadwellnk/usr/local/x86_64-pc-linux-gnu/x86_64-pc-linux-gnu/sys-root/usr/lib/modules/DSM-7.0/build dev-v7
 read -a KVERS <<< "$(sudo modinfo --field=vermagic redpill.ko)" && cp -fv redpill.ko ../redpill-load/ext/rp-lkm/redpill-linux-v${KVERS[0]}.ko || exit 1
 cd ..
-
-
-
-
 
 
 
