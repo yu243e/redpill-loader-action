@@ -26,6 +26,20 @@ make LINUX_SRC=../broadwellnk/usr/local/x86_64-pc-linux-gnu/x86_64-pc-linux-gnu/
 read -a KVERS <<< "$(sudo modinfo --field=vermagic redpill.ko)" && cp -fv redpill.ko ../redpill-load/ext/rp-lkm/redpill-linux-v${KVERS[0]}.ko || exit 1
 cd ..
 
+
+#download old pat for syno_extract_system_patch # thanks for jumkey's idea.
+mkdir synoesp
+curl --location https://cndl.synology.cn/download/DSM/criticalupdate/update_pack/25556-5/synology_apollolake_918%2B.pat --output oldpat.tar.gz
+tar -C./synoesp/ -zxvf oldpat.tar.gz flashupdate_6.2-25556-s2_all.deb
+cd synoesp
+dpkg -x flashupdate_6.2-25556-s2_all.deb ./
+
+
+
+
+
+dpkg -x flashupdate_6.2-25556-s2_all.deb ./
+
 # build redpill-load
 cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
