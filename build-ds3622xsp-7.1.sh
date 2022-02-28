@@ -1,6 +1,10 @@
 
 #!/bin/bash
 
+
+
+
+
 # prepare build tools
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 https://github.com/dogodefi/redpill-loader-action
@@ -8,6 +12,23 @@ root=`pwd`
 mkdir DS3622xsp-7.1.0
 mkdir output
 cd DS3622xsp-7.1.0
+
+
+#download old pat for syno_extract_system_patch # thanks for jumkey's idea.
+mkdir synoesp
+curl --location https://cndl.synology.cn/download/DSM/release/7.0.1/42218/DSM_DS3622xs%2B_42218.pat --output oldpat.tar.gz
+tar -C./synoesp/ -xf oldpat.tar.gz rd.gz
+cd synoesp
+local output;
+output=$(xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1)
+mkdir extract && cd extract
+cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
+ln -s scemd syno_extract_system_patch
+curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat?model=DS3622xs%2B&bays=12&dsm_version=7.1&build_number=42550 -output 42250.pat
+mkdir output-pat
+LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
+cd output-pat && tar -zcvf 42250.pat *
+ls -lh
 
 # download redpill
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
@@ -27,20 +48,7 @@ read -a KVERS <<< "$(sudo modinfo --field=vermagic redpill.ko)" && cp -fv redpil
 cd ..
 
 
-#download old pat for syno_extract_system_patch # thanks for jumkey's idea.
-mkdir synoesp
-curl --location https://cndl.synology.cn/download/DSM/release/7.0.1/42218/DSM_DS3622xs%2B_42218.pat --output oldpat.tar.gz
-tar -C./synoesp/ -xf oldpat.tar.gz rd.gz
-cd synoesp
-xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1
-mkdir extract && cd extract
-cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
-ln -s scemd syno_extract_system_patch
-curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat?model=DS3622xs%2B&bays=12&dsm_version=7.1&build_number=42550 -output 42250.pat
-mkdir output-pat
-LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
-cd output-pat && tar -zcvf 42250.pat *
-ls -lh
+
 
 
 
