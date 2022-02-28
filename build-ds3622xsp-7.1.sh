@@ -29,16 +29,16 @@ cd ..
 
 #download old pat for syno_extract_system_patch # thanks for jumkey's idea.
 mkdir synoesp
-curl --location https://cndl.synology.cn/download/DSM/criticalupdate/update_pack/25556-5/synology_apollolake_918%2B.pat --output oldpat.tar.gz
-tar -C./synoesp/ -zxvf oldpat.tar.gz flashupdate_6.2-25556-s2_all.deb
+curl --location https://cndl.synology.cn/download/DSM/release/7.0.1/42218/DSM_DS3622xs%2B_42218.pat --output oldpat.tar.gz
+tar -C./synoesp/ -xf oldpat.tar.gz rd.gz
 cd synoesp
-dpkg -x flashupdate_6.2-25556-s2_all.deb ./
+xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1
+mkdir extract && cd extract
+cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
+ln -s scemd syno_extract_system_patch
 
 
 
-
-
-dpkg -x flashupdate_6.2-25556-s2_all.deb ./
 
 # build redpill-load
 cd redpill-load
