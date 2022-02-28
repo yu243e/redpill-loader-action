@@ -5,9 +5,9 @@
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 https://github.com/dogodefi/redpill-loader-action
 root=`pwd`
-mkdir DS3622xsp-7.0.1
+mkdir DS3622xsp-7.1.0
 mkdir output
-cd DS3622xsp-7.0.1
+cd DS3622xsp-7.1.0
 
 # download redpill
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
@@ -36,6 +36,12 @@ xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1
 mkdir extract && cd extract
 cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
 ln -s scemd syno_extract_system_patch
+curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat?model=DS3622xs%2B&bays=12&dsm_version=7.1&build_number=42550 -output 42250.pat
+mkdir output-pat
+LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
+cd output-pat && tar -zcvf 42250.pat *
+ls -lh
+
 
 
 
@@ -45,6 +51,6 @@ cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
 ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
-sudo ./build-loader.sh 'DS3622xs+' '7.0.1-42218'
-mv images/redpill-DS3622xs+_7.0.1-4221*.img ${root}/output/
+sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42250'
+mv images/redpill-DS3622xs+_7.1.0-4221*.img ${root}/output/
 cd ${root}
