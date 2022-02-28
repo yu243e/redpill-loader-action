@@ -19,7 +19,7 @@ mkdir synoesp
 curl --location https://cndl.synology.cn/download/DSM/release/7.0.1/42218/DSM_DS3622xs%2B_42218.pat --output oldpat.tar.gz
 tar -C./synoesp/ -xf oldpat.tar.gz rd.gz
 cd synoesp
-local output;
+
 output=$(xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1)
 mkdir extract && cd extract
 cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
