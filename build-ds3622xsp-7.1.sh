@@ -59,6 +59,10 @@ cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
 sed -i '0,/"sha256.*/s//"sha256": "'$os_sha256'"/' ./config/DS3622xs+/${build_para}/config.json
 cat ./config/DS3622xs+/${build_para}/config.json
+
+# 7.1.0 must add this ext
+./ext-manager.sh addhttps://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-misc/rpext-index.json  
+
 # ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
 sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42250'
