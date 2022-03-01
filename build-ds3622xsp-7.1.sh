@@ -9,9 +9,11 @@
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 https://github.com/dogodefi/redpill-loader-action
 root=`pwd`
-mkdir DS3622xsp-7.1.0
+workpath="DS3622xsp-7.1.0"
+mkdir $workpath
+
 mkdir output
-cd DS3622xsp-7.1.0
+cd $workpath
 
 
 #download old pat for syno_extract_system_patch # thanks for jumkey's idea.
@@ -28,6 +30,7 @@ curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550
 mkdir output-pat
 LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
 cd output-pat && tar -zcvf 42250.pat *
+cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
 cd ../../../
 
 # download redpill
