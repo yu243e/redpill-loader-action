@@ -49,6 +49,7 @@ sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
 
 cd output-pat && sudo tar -zcvf 42250.pat * && sudo chmod 777 42250.pat
 read -a os_sha256 <<< $(sha256sum 42250.pat)
+echo $os_sha256
 cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
 cd ../../../
 
@@ -56,7 +57,7 @@ cd ../../../
 # build redpill-load
 cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
-sed -i '0,/"sha256.*/s//"sha256": '$os_sha256'/' ./config/DS3622xs+/${build_para}/config.json
+sed -i '0,/"sha256.*/s//"sha256": "'$os_sha256'"/' ./config/DS3622xs+/${build_para}/config.json
 cat ./config/DS3622xs+/${build_para}/config.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
