@@ -28,10 +28,10 @@ ln -s scemd syno_extract_system_patch
 
 curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat --output 42250.pat
 ls -lh
-mkdir output-pat
-LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
-ls -l output-pat
-cd output-pat && tar -zcvf 42250.pat *
+
+sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
+
+cd output-pat && sudo tar -zcvf 42250.pat * && sudo chmod 777 42250.pat
 
 cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
 cd ../../../
