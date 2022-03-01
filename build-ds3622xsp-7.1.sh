@@ -10,7 +10,7 @@ sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-cer
 root=`pwd`
 workpath="DS3622xsp-7.1.0"
 mkdir $workpath
-build_para ="7.1.0-42250"
+build_para="7.1.0-42250"
 mkdir output
 cd $workpath
 
@@ -57,8 +57,6 @@ cd ../../../
 cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
 sed -i '0,/"sha256.*/s//"sha256": '$os_sha256'/' ./config/DS3622xs+/${build_para}/config.json
-cat ./config/DS3622xs+/${build_para}/config.json
-cat ./config/DS3622xs+/7.1.0-42250/config.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
 sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42250'
