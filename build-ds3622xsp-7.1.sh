@@ -15,27 +15,6 @@ mkdir output
 cd $workpath
 
 
-#download old pat for syno_extract_system_patch # thanks for jumkey's idea.
-mkdir synoesp
-curl --location https://global.download.synology.com/download/DSM/release/7.0.1/42218/DSM_DS3622xs%2B_42218.pat --output oldpat.tar.gz
-tar -C./synoesp/ -xf oldpat.tar.gz rd.gz
-cd synoesp
-
-output=$(xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1)
-mkdir extract && cd extract
-cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
-ln -s scemd syno_extract_system_patch
-
-curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat --output 42250.pat
-ls -lh
-
-sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
-
-cd output-pat && sudo tar -zcvf 42250.pat * && sudo chmod 777 42250.pat
-
-cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
-cd ../../../
-
 # download redpill
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
 git clone -b develop --depth=1 https://github.com/dogodefi/redpill-load.git
@@ -53,7 +32,25 @@ make LINUX_SRC=../broadwellnk/usr/local/x86_64-pc-linux-gnu/x86_64-pc-linux-gnu/
 read -a KVERS <<< "$(sudo modinfo --field=vermagic redpill.ko)" && cp -fv redpill.ko ../redpill-load/ext/rp-lkm/redpill-linux-v${KVERS[0]}.ko || exit 1
 cd ..
 
+# download old pat for syno_extract_system_patch # thanks for jumkey's idea.
+mkdir synoesp
+curl --location https://global.download.synology.com/download/DSM/release/7.0.1/42218/DSM_DS3622xs%2B_42218.pat --output oldpat.tar.gz
+tar -C./synoesp/ -xf oldpat.tar.gz rd.gz
+cd synoesp
 
+output=$(xz -dc < rd.gz 2>/dev/null | cpio -idm 2>&1)
+mkdir extract && cd extract
+cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
+ln -s scemd syno_extract_system_patch
+
+curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat --output 42250.pat
+
+sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
+
+cd output-pat && sudo tar -zcvf 42250.pat * && sudo chmod 777 42250.pat
+
+cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
+cd ../../../
 
 
 # build redpill-load
