@@ -48,7 +48,7 @@ curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550
 sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
 
 cd output-pat && sudo tar -zcvf 42250.pat * && sudo chmod 777 42250.pat
-
+read -a os_sha256 <<< $(sha256sum 42250.pat)
 cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
 cd ../../../
 
@@ -56,6 +56,8 @@ cd ../../../
 # build redpill-load
 cd redpill-load
 cp -f ${root}/user_config.DS3622xs.json ./user_config.json
+sed -i '/"extra_cmdline"/i"os": {\n    "sha256": "${os_sha256}"\n  },' ./user_config.json
+cat ./user_config.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
 sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42250'
