@@ -67,5 +67,5 @@ cat ./config/DS3622xs+/${build_para}/config.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
 sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42550'
-mv images/redpill-DS3622xs+_7.1.0-422*.img ${root}/output/
+mv images/redpill-DS3622xs+_7.1.0-42*.img ${root}/output/
 cd ${root}
