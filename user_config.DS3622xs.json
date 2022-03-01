@@ -1,7 +1,4 @@
 {
-    "os": {
-      "sha256": "replace_me_after_42250_os_sha256"
-  },
   "extra_cmdline": {
     "vid": "0x46f4",
     "pid": "0x0001",
