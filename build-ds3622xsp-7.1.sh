@@ -10,7 +10,7 @@ sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-cer
 root=`pwd`
 workpath="DS3622xsp-7.1.0"
 mkdir $workpath
-build_para="7.1.0-42250"
+build_para="7.1.0-42550"
 mkdir output
 cd $workpath
 
@@ -43,14 +43,14 @@ mkdir extract && cd extract
 cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
 ln -s scemd syno_extract_system_patch
 
-curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat --output 42250.pat
+curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat --output 42550.pat
 
-sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42250.pat output-pat
+sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42550.pat output-pat
 
-cd output-pat && sudo tar -zcvf 42250.pat * && sudo chmod 777 42250.pat
-read -a os_sha256 <<< $(sha256sum 42250.pat)
+cd output-pat && sudo tar -zcvf 42550.pat * && sudo chmod 777 42550.pat
+read -a os_sha256 <<< $(sha256sum 42550.pat)
 echo $os_sha256
-cp 42250.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42250.pat
+cp 42550.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42550.pat
 cd ../../../
 
 
@@ -66,6 +66,6 @@ cat ./config/DS3622xs+/${build_para}/config.json
 ./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/redpill-ext/master/acpid/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/master/mpt3sas/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
-sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42250'
+sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42550'
 mv images/redpill-DS3622xs+_7.1.0-422*.img ${root}/output/
 cd ${root}
