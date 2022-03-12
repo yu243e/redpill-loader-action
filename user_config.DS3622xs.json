@@ -3,8 +3,8 @@
     "vid": "0x46f4",
     "pid": "0x0001",
     "SasIdxMap": "0",
-    "SataPortMap": "148", 
-    "DiskIdxMap": "000105",
+    "SataPortMap": "48", 
+    "DiskIdxMap": "0004",
     "sn": "1130LWN123456",
     "mac1": "001132FA6CD3"
   },
