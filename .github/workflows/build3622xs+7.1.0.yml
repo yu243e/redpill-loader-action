@@ -1,7 +1,16 @@
 name: Build RedPill DSM loader
 
-on: workflow_dispatch
-
+on: 
+  workflow_dispatch:
+    inputs:
+      os_version:
+        description: 'Must build DSM7.1 and after DSM versions'
+        required: true
+        default: '42621'
+      pat-address:
+        description: 'Pat file URL'
+        required: true
+        default: 'https://global.download.synology.com/download/DSM/release/7.1/42621/DSM_DS3622xs%2B_42621.pat'
 jobs:
   redpill:
     runs-on: ubuntu-latest
@@ -15,7 +24,7 @@ jobs:
       - name: Build DS3622xs+ 7.1
         id: build-ds3622xsp-71
         run: |
-            bash build-ds3622xsp-7.1.sh
+            bash build-ds3622xsp-7.1.sh ${{github.event.inputs.os_version}} ${{github.event.inputs.pat-address}}
       - name: Archive DS3622x+ 7.1 loader image
         uses: actions/upload-artifact@v2
         with:
