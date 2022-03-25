@@ -8,9 +8,11 @@
 # prepare build tools
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 root=`pwd`
+$os_version=$1
+pat-address=$2
 workpath="DS3622xsp-7.1.0"
 mkdir $workpath
-build_para="7.1.0-42550"
+build_para="7.1.0-"$os_version
 mkdir output
 cd $workpath
 
@@ -43,14 +45,14 @@ mkdir extract && cd extract
 cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
 ln -s scemd syno_extract_system_patch
 
-curl --location https://global.download.synology.com/download/DSM/beta/7.1/42550/DSM_DS3622xs%2B_42550.pat --output 42550.pat
+curl --location  pat-address --output $os_version.pat
 
-sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch 42550.pat output-pat
+sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch $os_version.pat output-pat
 
-cd output-pat && sudo tar -zcvf 42550.pat * && sudo chmod 777 42550.pat
-read -a os_sha256 <<< $(sha256sum 42550.pat)
+cd output-pat && sudo tar -zcvf $os_version.pat * && sudo chmod 777 $os_version.pat
+read -a os_sha256 <<< $(sha256sum $os_version.pat)
 echo $os_sha256
-cp 42550.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_42550.pat
+cp $os_version.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_$os_version.pat
 cd ../../../
 
 
@@ -63,11 +65,11 @@ cat ./config/DS3622xs+/${build_para}/config.json
 # 7.1.0 must add this ext
 ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-misc/rpext-index.json  
 # add optional ext
-./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/offical/rpext-index.json
-./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
+#./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/offical/rpext-index.json
+#./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
 #./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/redpill-ext/master/acpid/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/offical/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
-sudo ./build-loader.sh 'DS3622xs+' '7.1.0-42550'
-mv images/redpill-DS3622xs+_7.1.0-42*.img ${root}/output/
+sudo ./build-loader.sh 'DS3622xs+' '7.1.0-$os_version'
+mv images/redpill-DS3622xs+_7.*.img ${root}/output/
 cd ${root}
