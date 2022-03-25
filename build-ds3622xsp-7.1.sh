@@ -8,7 +8,7 @@
 # prepare build tools
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 root=`pwd`
-$os_version=$1
+os_version=$1
 pat-address=$2
 workpath="DS3622xsp-7.1.0"
 mkdir $workpath
