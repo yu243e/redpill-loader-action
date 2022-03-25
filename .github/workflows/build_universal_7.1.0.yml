@@ -28,7 +28,7 @@ jobs:
       - name: Build dsm 7.1
         id: build-dsm-71
         run: |
-            bash build-ds3622xsp-7.1.sh ${{github.event.inputs.dsmodel}} ${{github.event.inputs.os_version}} ${{github.event.inputs.pat-address}}
+            bash build-universal-7.1.sh ${{github.event.inputs.dsmodel}} ${{github.event.inputs.os_version}} ${{github.event.inputs.pat-address}}
       - name: Archive loader image
         uses: actions/upload-artifact@v2
         with:
