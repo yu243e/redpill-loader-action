@@ -30,7 +30,7 @@ case $1 in
         echo "arch is Geminilake"
         ;;
  *)
-        echo "Usage: $arch [3622xs+|4021xs+|3221|918|920]"
+        echo "Usage: $dsmodel [DS3622xs+|RS4021xs+|DVA3221|DS918+|DS920+]"
         exit 1
         ;;
 esac
