@@ -9,7 +9,7 @@
 sudo apt-get update && sudo apt-get install --yes --no-install-recommends ca-certificates build-essential git libssl-dev curl cpio bspatch vim gettext bc bison flex dosfstools kmod jq
 root=`pwd`
 os_version=$1
-pat-address=$2
+pat_address=$2
 workpath="DS3622xsp-7.1.0"
 mkdir $workpath
 build_para="7.1.0-"${os_version}
@@ -45,7 +45,7 @@ mkdir extract && cd extract
 cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
 ln -s scemd syno_extract_system_patch
 
-curl --location  ${pat-address} --output ${os_version}.pat
+curl --location  ${pat_address} --output ${os_version}.pat
 
 sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch ${os_version}.pat output-pat
 
