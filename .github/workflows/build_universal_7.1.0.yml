@@ -25,12 +25,12 @@ jobs:
         id: checkout
         with:
           submodules: 'true'
-      - name: Build DS3622xs+ 7.1
-        id: build-ds3622xsp-71
+      - name: Build dsm 7.1
+        id: build-dsm-71
         run: |
-            bash build-ds3622xsp-7.1.sh ${{github.event.inputs.os_version}} ${{github.event.inputs.pat-address}}
-      - name: Archive DS3622x+ 7.1 loader image
+            bash build-ds3622xsp-7.1.sh ${{github.event.inputs.dsmodel}} ${{github.event.inputs.os_version}} ${{github.event.inputs.pat-address}}
+      - name: Archive loader image
         uses: actions/upload-artifact@v2
         with:
-          name: redpill-DS3622xs+_7.1-loader
-          path: output/redpill-DS3622xs+_7.1*.img
+          name: redpill-${{github.event.inputs.dsmodel}}_7.1-loader
+          path: output/redpill-*.img
