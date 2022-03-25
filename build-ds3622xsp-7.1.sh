@@ -12,7 +12,7 @@ $os_version=$1
 pat-address=$2
 workpath="DS3622xsp-7.1.0"
 mkdir $workpath
-build_para="7.1.0-"$os_version
+build_para="7.1.0-"${os_version}
 mkdir output
 cd $workpath
 
@@ -45,14 +45,14 @@ mkdir extract && cd extract
 cp ../usr/lib/libcurl.so.4 ../usr/lib/libmbedcrypto.so.5 ../usr/lib/libmbedtls.so.13 ../usr/lib/libmbedx509.so.1 ../usr/lib/libmsgpackc.so.2 ../usr/lib/libsodium.so ../usr/lib/libsynocodesign-ng-virtual-junior-wins.so.7 ../usr/syno/bin/scemd ./
 ln -s scemd syno_extract_system_patch
 
-curl --location  pat-address --output $os_version.pat
+curl --location  pat-address --output ${os_version}.pat
 
-sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch $os_version.pat output-pat
+sudo LD_LIBRARY_PATH=. ./syno_extract_system_patch ${os_version}.pat output-pat
 
-cd output-pat && sudo tar -zcvf $os_version.pat * && sudo chmod 777 $os_version.pat
-read -a os_sha256 <<< $(sha256sum $os_version.pat)
+cd output-pat && sudo tar -zcvf ${os_version}.pat * && sudo chmod 777 ${os_version}.pat
+read -a os_sha256 <<< $(sha256sum ${os_version}.pat)
 echo $os_sha256
-cp $os_version.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_$os_version.pat
+cp ${os_version}.pat ${root}/${workpath}/redpill-load/cache/ds3622xsp_${os_version}.pat
 cd ../../../
 
 
@@ -70,6 +70,6 @@ cat ./config/DS3622xs+/${build_para}/config.json
 #./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/redpill-ext/master/acpid/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/dogodefi/mpt3sas/offical/rpext-index.json
 # ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
-sudo ./build-loader.sh 'DS3622xs+' '7.1.0-$os_version'
+sudo ./build-loader.sh 'DS3622xs+' '7.1.0-${os_version}'
 mv images/redpill-DS3622xs+_7.*.img ${root}/output/
 cd ${root}
