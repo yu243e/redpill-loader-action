@@ -24,13 +24,18 @@ case $1 in
         osid="ds918p"
         echo "arch is Apollolake"
         ;;
+  DS3615xs)
+        arch="bromolow"
+        osid="ds3615xs"
+        echo "arch is Bromolow"
+        ;;
  DS920+)
         arch="geminilake"
         osid="ds920p"
         echo "arch is Geminilake"
         ;;
  *)
-        echo "Usage: $dsmodel [DS3622xs+|RS4021xs+|DVA3221|DS918+|DS920+]"
+        echo "Usage: $dsmodel [DS3622xs+|RS4021xs+|DVA3221|DS918+|DS920+|DS3615xs]"
         exit 1
         ;;
 esac
