@@ -20,5 +20,5 @@ jobs:
       - name: Archive DVA3211 7.0.1 loader image
         uses: actions/upload-artifact@v2
         with:
-          name: redpill-DVA3211+_7.0.1-loader
+          name: redpill-DVA3211_7.0.1-loader
           path: output/redpill-DVA3211_7.0*.img
