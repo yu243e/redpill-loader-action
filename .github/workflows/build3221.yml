@@ -21,4 +21,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: redpill-DVA3211_7.0.1-loader
-          path: output/redpill-DVA3211_7.0*.img
+          path: output/redpill-DVA3221_7.0*.img
