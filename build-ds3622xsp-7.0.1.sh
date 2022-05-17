@@ -10,8 +10,8 @@ mkdir output
 cd DS3622xsp-7.0.1
 
 # download redpill
-git clone -b develop --depth=1 https://github.com/dogodefi/redpill-lkm.git
-git clone -b develop --depth=1 https://github.com/pocopico/redpill-load.git
+git clone -b develop --depth=1 https://github.com/jumkey/redpill-lkm.git
+git clone -b develop --depth=1 https://github.com/jumkey/redpill-load.git
 
 # download syno toolkit
 curl --location "https://global.download.synology.com/download/ToolChain/toolkit/7.0/broadwellnk/ds.broadwellnk-7.0.dev.txz" --output ds.broadwellnk-7.0.dev.txz
