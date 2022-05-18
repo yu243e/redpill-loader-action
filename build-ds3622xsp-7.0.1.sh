@@ -28,10 +28,12 @@ cd ..
 
 # build redpill-load
 cd redpill-load
-cp -f ${root}/user_config.DS3622xs+.json ./user_config.json
-./ext-manager.sh add 'https://github.com/pocopico/redpill-load/raw/develop/redpill-misc/rpext-index.json'
+cp -f ${root}/user_config.junDS3622xs+.json ./user_config.json
 ./ext-manager.sh add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
-#sudo BRP_JUN_MOD=1 BRP_DEBUG=1 ./build-loader.sh 'DS3622xs+' '7.0.1-42218'
-sudo ./build-loader-old.sh 'DS3622xs+' '7.0.1-42218'
+./ext-manager.sh add https://raw.githubusercontent.com/pocopico/rp-ext/main/mpt3sas/rpext-index.json
+./ext-manager.sh add https://raw.githubusercontent.com/pocopico/redpill-load/master/redpill-acpid/rpext-index.json
+./ext-manager.sh add https://raw.githubusercontent.com/pocopico/redpill-load/develop/redpill-misc/rpext-index.json
+sudo BRP_JUN_MOD=1 BRP_DEBUG=1 ./build-loader.sh 'DS3622xs+' '7.0.1-42218'
+#sudo ./build-loader-old.sh 'DS3622xs+' '7.0.1-42218'
 mv images/redpill-DS3622xs+_7.0.1-4221*.img ${root}/output/
 cd ${root}
