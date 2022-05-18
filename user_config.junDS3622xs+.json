@@ -2,6 +2,8 @@
   "extra_cmdline": {
     "vid": "0x46f4",
     "pid": "0x0001",
+    "SataPortMap": "48", 
+    "DiskIdxMap": "0004",
     "SasIdxMap": "0",
     "netif_num": 6,
     "sn": "2150SQRW1ZAHH",
