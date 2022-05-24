@@ -7,11 +7,10 @@
     "DiskIdxMap": "0004",
     "netif_num": 5,
     "sn": "2150SQRW1ZAHH",
-    "mac1": "001132FA6CD3",
-    "mac2": "001132FA6CD4",    
-    "mac3": "001132FA6CD5", 
-    "mac4": "001132FA6CD6",
-    "mac5": "001132FA6CD7"
+    "mac1": "001132FA6CD4",
+    "mac2": "001132FA6CD5",    
+    "mac3": "001132FA6CD6", 
+    "mac4": "001132FA6CD7",
   },
   "synoinfo": {
     "supportsystemperature": "no",
