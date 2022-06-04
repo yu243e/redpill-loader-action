@@ -7,9 +7,9 @@
     "mac1": "00E26926EF21"
   },
   "synoinfo": {
-    "maxdisks" : "16",
-    "internalportcfg" : "0xffe7",
-    "esataportcfg" : "0x0018"
+    "maxdisks":"16",
+    "internalportcfg":"0xffe7",
+    "esataportcfg":"0x0018"
   },
   "ramdisk_copy": {}
 }
